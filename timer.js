@@ -11,7 +11,7 @@ const randomNumbers = [];
 for (let i = 0; i < 1000; i++) {
   randomNumbers.push(getRandomNumber(1, 2000));
 }
-const content = randomNumbers.join(', ');
+const content = randomNumbers.join(`\n`);
 
 fs.writeFile('random_numbers.txt', content, (err) => {
   if (err) {
@@ -19,15 +19,14 @@ fs.writeFile('random_numbers.txt', content, (err) => {
   } else {
     console.log('File written successfully');
   }
+  timer();
 });
-
-// console.log(content);
-
-timer();
 
 function timer() {
   const startTime = new Date();
   console.log(startTime.toLocaleTimeString());
+
+  console.log(content);
 
   for (let i = 0; i < 100000; i++) {
     fs.readFileSync('random_numbers.txt');
