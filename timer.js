@@ -1,19 +1,16 @@
-// timer
-// https://stackoverflow.com/questions/14249506/how-can-i-wait-in-node-js-javascript-l-need-to-pause-for-a-period-of-time
-
 const fs = require('fs');
 
 function getRandomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+  return Math.floor(Math.random() * (max - min + 1)) + min;       // create random number
 }
 
 const randomNumbers = [];
 for (let i = 0; i < 1000; i++) {
   randomNumbers.push(getRandomNumber(1, 2000));
 }
-const content = randomNumbers.join(`\n`);
+const content = randomNumbers.join(`\n`);                         // put one in each line
 
-fs.writeFile('random_numbers.txt', content, (err) => {
+fs.writeFile('random_numbers.txt', content, (err) => {            // write in file
   if (err) {
     console.error(err);
   } else {
@@ -26,7 +23,8 @@ function timer() {
   const startTime = new Date();
   console.log(startTime.toLocaleTimeString());
 
-  console.log(content);
+  const fileContent = fs.readFileSync('random_numbers.txt', 'utf-8');   // read numbers from file
+  console.log(fileContent);
 
   for (let i = 0; i < 100000; i++) {
     fs.readFileSync('random_numbers.txt');
